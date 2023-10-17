@@ -9,19 +9,13 @@ require('dotenv').config()
 
 
 const app = express()
-console.log(process.env.ENVI)
-if (process.env.ENVI === "dev") {
-  app.use(cors())
-} else {
-  app.use(cors(
-    {
-      origin: ["https://cyquestbackend007.vercel.app"],
-      methods: ["POST", "GET"],
-      credentials: true
-    }
-  ));
-
-}
+app.use(cors(
+  {
+    origin: ["https://cyquestbackend007.vercel.app"],
+    methods: ["POST", "GET"],
+    credentials: true
+  }
+));
 app.use(express.json())
 const PORT = 8080
 mongoose.connect(process.env.MONGO_URI);
