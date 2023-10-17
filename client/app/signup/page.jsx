@@ -1,15 +1,23 @@
 'use client'
 
 import { useState } from "react"
-
+import Link from "next/link"
+import { useGameContext } from "../context/game"
+import { useEffect } from "react"
 const SignPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
   const [username, setUsername] = useState("")
+  const {data, url} = useGameContext()
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      window.location.href = "/hunt"
+    }
+  })
 
   const registerUser = async (event) => {
     event.preventDefault()
-    const response = await fetch('http://localhost:8080/api/register', {
+    const response = await fetch(`${url}/api/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -103,9 +111,9 @@ const SignPage = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Already have an account?{' '}
-            <a href="#" className="font-semibold leading-6 text-secondary hover:text-primary">
+            <Link href="login" className="font-semibold leading-6 text-secondary hover:text-primary">
               Log In
-            </a>
+            </Link>
           </p>
         </div>
       </div>

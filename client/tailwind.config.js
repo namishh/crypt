@@ -7,10 +7,32 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      colors: {
+        'darkbg': "#08090b",
+        'darkmbg': "#0c0d11",
+        'darkfg': "#dcdee6",
+        'darkerror': "#e0626c",
+        'darksuccess': "#60ae7f",
+        'darkpr': "#7095db",
+        'darkpink': "#f06595",
+        'darkwarn': "#cb795f",
+      },
+      screens: {
+        'sm': '576px',
+        // => @media (min-width: 576px) { ... }
+
+        'md': '960px',
+        // => @media (min-width: 960px) { ... }
+
+        'lg': '1440px',
+        // => @media (min-width: 1440px) { ... }
+      },
+      lineHeight: {
+        'extra-loose': '2.5',
+        '14': '3rem',
+      },
+      height: {
+        'fuller': '140vh',
       },
     },
   },
@@ -21,12 +43,11 @@ module.exports = {
           "primary": "#5c7cfa",
           "secondary": "#7190ed",
           "accent": "#f06595",
-          "neutral": "#090909",
-          "base-100": "#010101",
-          "info": "#20c997",
-          "success": "#40c057",
-          "warning": "#fab005",
-          "error": "#ff6b6b",
+          "neutral": "#0c0d11",
+          "base-100": "#08090b",
+          "success": "#60ae7f",
+          "warning": "#cb795f",
+          "error": "#e0626c",
         },
       },
     ],

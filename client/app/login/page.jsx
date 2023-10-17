@@ -1,14 +1,23 @@
 'use client'
 
-import { useState } from "react"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import { toast } from "react-toastify"
+import { useGameContext } from "../context/game"
 
 const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
+  const {data, url} = useGameContext()
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      window.location.href = "/hunt"
+    }
+  })
   async function loginUser(event) {
     event.preventDefault()
 
-    const response = await fetch('http://localhost:8080/api/login', {
+    const response = await fetch(`${url}/api/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -20,12 +29,14 @@ const LoginPage = () => {
     })
 
     const data = await response.json()
+    console.log(data)
     // TODO: add notificatinos
     if (data.user) {
       console.log(data)
       localStorage.setItem('token', data.user)
-      window.location.href = '/quiz'
+      window.location.href = '/hunt'
     } else {
+      toast("No such user exists!")
     }
   }
   return <div className="h-screen flex flex-col items-center justify-center relative">
@@ -94,9 +105,9 @@ const LoginPage = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-secondary hover:text-primary">
+            <Link href="/signup" className="font-semibold leading-6 text-secondary hover:text-primary">
               Sign Up Today
-            </a>
+            </Link>
           </p>
         </div>
       </div>
