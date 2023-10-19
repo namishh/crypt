@@ -27,8 +27,7 @@ const PORT = 8080
 mongoose.connect(process.env.MONGO_URI);
 
 app.get('/', (req, res) => {
-  res.json({ message: "hi" })
-  console.log("hi")
+  res.json({ message: "owo what are you doing here?" })
 })
 
 
