@@ -8,7 +8,7 @@ const SignPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
   const [username, setUsername] = useState("")
-  const {data, url} = useGameContext()
+  const { data, url } = useGameContext()
   useEffect(() => {
     if (localStorage.getItem('token')) {
       window.location.href = "/hunt"
@@ -31,7 +31,7 @@ const SignPage = () => {
 
     const data = await response.json()
     if (data.status === "ok") {
-      window.location.href="/login"
+      window.location.href = "/login"
     }
   }
 

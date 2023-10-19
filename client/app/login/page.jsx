@@ -8,7 +8,7 @@ import { useGameContext } from "../context/game"
 const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
-  const {data, url} = useGameContext()
+  const { data, url } = useGameContext()
   useEffect(() => {
     if (localStorage.getItem('token')) {
       window.location.href = "/hunt"
@@ -29,7 +29,6 @@ const LoginPage = () => {
     })
 
     const data = await response.json()
-    // TODO: add notificatinos
     if (data.user) {
       localStorage.setItem('token', data.user)
       window.location.href = '/hunt'
