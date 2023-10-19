@@ -11,7 +11,7 @@ export const GameProvider = ({ children }) => {
   if (process.env.NEXT_PUBLIC_ENVIRONMENT === "development") {
     url = "http://localhost:8080"
   } else {
-    url = "https://cyqx.vercel.app"
+    url = "https://cyquestbackend007.vercel.app"
   }
   return (
     <GameContext.Provider value={{  data, setData, loggedIn, setLoggedIn, url }}>
