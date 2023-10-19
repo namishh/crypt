@@ -2,6 +2,7 @@ import './globals.css'
 import { Dosis } from 'next/font/google'
 import { GameProvider } from './context/game'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const dosis = Dosis({ subsets: ['latin'] })
 
 export const mtadata = {
@@ -13,21 +14,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${dosis.className} bg-darkbg min-h-screen`}>
-          <GameProvider>
+        <GameProvider>
+          <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
           {children}
-    <ToastContainer
-      position="bottom-center"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="dark"
-      />
-          </GameProvider>
+        </GameProvider>
       </body>
     </html>
   )

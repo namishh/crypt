@@ -5,7 +5,6 @@ const questionSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide the answer!"],
     lowercase: true,
-    select: false,
   },
   question: {
     type: String,
@@ -13,7 +12,13 @@ const questionSchema = new mongoose.Schema({
     unique: true,
     required: [true, "Please provide level number!"],
   },
-}, { collection: 'answers' });
+  statement: {
+    type: String,
+    min: 0,
+    unique: false,
+    required: [true, "Please provide statement"],
+  },
+}, { collection: 'questions' });
 
 const Question = mongoose.model("Question", questionSchema);
 
