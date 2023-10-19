@@ -26,6 +26,13 @@ app.get('/', (req, res) => {
   console.log("hi")
 })
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
+
 app.post('/api/register', async (req, res) => {
   console.log(req.body)
   const newPassword = await bcrypt.hash(req.body.pass, 10)
