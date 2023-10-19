@@ -36,19 +36,15 @@ app.get('/', (req, res) => {
 
 
 app.post('/api/register', async (req, res) => {
-  console.log(req.body)
   const newPassword = await bcrypt.hash(req.body.pass, 10)
   try {
-    console.log("h")
     await User.create({
       username: req.body.username,
       email: req.body.email,
       password: newPassword,
     })
-    console.log("i")
     res.json({ status: 'ok' })
   } catch (error) {
-    console.log(error)
     res.json({ status: 'error', error: 'Duplicate email' })
   }
 })
@@ -59,11 +55,9 @@ app.get('/api/getQuestion', async (req, res) => {
     const decoded = jwt.verify(token, 'secret123')
     const email = decoded.email
     const user = await User.findOne({ email: email })
-    console.log(user)
     const question = await Question.findOne({ question: `${user.level}` });
     return res.json({ status: 'ok', data: question })
   } catch (error) {
-    console.log(error)
     res.json({ status: 'error', error: 'invalid token' })
   }
 })
@@ -95,7 +89,6 @@ app.post('/api/login', async (req, res) => {
 
     return res.json({ status: 'ok', user: token })
   } else {
-    console.log("huh")
     return res.json({ status: 'error', user: false })
   }
 })
@@ -110,7 +103,6 @@ app.get("/api/getData", async (req, res) => {
 
     return res.json({ status: 'ok', data: user })
   } catch (error) {
-    console.log(error)
     res.json({ status: 'error', error: 'invalid token' })
   }
 })
@@ -118,7 +110,6 @@ app.get("/api/getData", async (req, res) => {
 app.post("/api/checkAnswer", async (req, res) => {
   const token = req.headers['x-access-token']
   const answer = req.body.answer
-  console.log(answer)
   try {
     const decoded = jwt.verify(token, 'secret123')
     const email = decoded.email
@@ -130,7 +121,6 @@ app.post("/api/checkAnswer", async (req, res) => {
     return res.json({ status: 'ok', correct: false })
     }
   } catch (error) {
-    console.log(error)
     res.json({ status: 'error', error: 'invalid token' })
   }
 })

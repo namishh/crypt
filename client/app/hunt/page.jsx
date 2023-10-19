@@ -24,7 +24,6 @@ export default function Home() {
   }
   const checkAnswer = async (e) => {
     e.preventDefault()
-    console.log(answer)
 
     const response = await fetch(`${url}/api/checkAnswer`, {
       method: 'POST',
@@ -38,7 +37,6 @@ export default function Home() {
     })
 
     const data = await response.json()
-    console.log(data)
     if (data.correct) {
       toast("correct answer")
     } else {
