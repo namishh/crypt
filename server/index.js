@@ -8,10 +8,10 @@ const Question = require("./models/QuestionModel")
 require('dotenv').config()
 
 const getTotalQuestions = async () => {
-	let number = await Question.countDocuments({});
-	return number;
+  let number = await Question.countDocuments({});
+  return number;
 };
-
+const SECRET = process.env.SECRET
 const app = express()
 const corsOpts = {
   origin: '*',
@@ -52,7 +52,7 @@ app.post('/api/register', async (req, res) => {
 app.get('/api/getQuestion', async (req, res) => {
   const token = req.headers['x-access-token']
   try {
-    const decoded = jwt.verify(token, 'secret123')
+    const decoded = jwt.verify(token, SECRET)
     const email = decoded.email
     const user = await User.findOne({ email: email })
     const question = await Question.findOne({ question: `${user.level}` });
@@ -84,7 +84,7 @@ app.post('/api/login', async (req, res) => {
         level: user.level,
         lastUpdate: user.lastUpdate
       },
-      'secret123'
+      SECRET
     )
 
     return res.json({ status: 'ok', user: token })
@@ -97,7 +97,7 @@ app.get("/api/getData", async (req, res) => {
   const token = req.headers['x-access-token']
 
   try {
-    const decoded = jwt.verify(token, 'secret123')
+    const decoded = jwt.verify(token, SECRET)
     const email = decoded.email
     const user = await User.findOne({ email: email })
 
@@ -111,14 +111,14 @@ app.post("/api/checkAnswer", async (req, res) => {
   const token = req.headers['x-access-token']
   const answer = req.body.answer
   try {
-    const decoded = jwt.verify(token, 'secret123')
+    const decoded = jwt.verify(token, SECRET)
     const email = decoded.email
     const user = await User.findOne({ email: email })
     const question = await Question.findOne({ question: `${user.level}` });
     if (question.answer === answer) {
-    return res.json({ status: 'ok', correct: true })
+      return res.json({ status: 'ok', correct: true })
     } else {
-    return res.json({ status: 'ok', correct: false })
+      return res.json({ status: 'ok', correct: false })
     }
   } catch (error) {
     res.json({ status: 'error', error: 'invalid token' })
