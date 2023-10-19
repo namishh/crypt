@@ -14,10 +14,16 @@ const corsOpts = {
   credentials: true,
   methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type'],
-  exposedHeaders: ['Content-Type']
+  exposedHeaders: ['Content-Type', 'x-auth']
 };
 app.use(cors(corsOpts));
 app.use(express.json())
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  next();
+});
 const PORT = 8080
 mongoose.connect(process.env.MONGO_URI);
 
@@ -26,12 +32,6 @@ app.get('/', (req, res) => {
   console.log("hi")
 })
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  next();
-});
 
 app.post('/api/register', async (req, res) => {
   console.log(req.body)
