@@ -14,7 +14,7 @@ module.exports = {
         'darkerror': "#e0626c",
         'darksuccess': "#60ae7f",
         'darkpr': "#7095db",
-        'darkpink': "#f06595",
+        'darkpink': "#db7aab",
         'darkwarn': "#cb795f",
       },
       screens: {
@@ -42,7 +42,7 @@ module.exports = {
         mytheme: {
           "primary": "#5c7cfa",
           "secondary": "#7190ed",
-          "accent": "#f06595",
+          "accent": "#db7aab",
           "neutral": "#0c0d11",
           "base-100": "#08090b",
           "success": "#60ae7f",

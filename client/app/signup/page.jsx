@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { useGameContext } from "../context/game"
 import { useEffect } from "react"
+import Navbar from "../comps/Nav"
 const SignPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
@@ -37,6 +38,7 @@ const SignPage = () => {
 
 
   return <div className="h-screen flex flex-col items-center justify-center relative">
+    <Navbar />
     <div className="absolute flex flex-wrap w-full h-full bg-primary">
       {
         [...Array(48)].map((e, i) => <div className="w-1/12 h-1/4 bg-base-100 border-r-2 border-b-2 border-[#111] hover:bg-[#131c29] delay-100 transition-all" key={i}></div>)
@@ -47,7 +49,7 @@ const SignPage = () => {
       <div className="flex min-h-full relative bg-base-100 rounded-md w-auto flex-col flex-1 justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-12 w-auto"
+            className="mx-auto mb-8 h-12 w-auto"
             src="./logo.png"
             alt="Your Company"
           />

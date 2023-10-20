@@ -7,7 +7,7 @@
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text; 
-  background-image: repeating-radial-gradient(farthest-side at 6px 10px,#7095db, #cadee6, #7095db);
+  background-image: repeating-radial-gradient(farthest-side at 6px 10px,#7095db, #db7aab, #7095db);
 
 }
 

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import { useGameContext } from "../context/game"
-
+import Navbar from "../comps/Nav"
 const LoginPage = () => {
   const [email, setEmail] = useState("")
   const [pass, setPass] = useState("")
@@ -37,6 +37,7 @@ const LoginPage = () => {
     }
   }
   return <div className="h-screen flex flex-col items-center justify-center relative">
+    <Navbar />
     <div className="absolute flex flex-wrap w-full h-full bg-primary">
       {
         [...Array(48)].map((e, i) => <div className="w-1/12 h-1/4 bg-base-100 border-r-2 border-b-2 border-[#111] hover:bg-[#131c29] delay-100 transition-all" key={i}></div>)
@@ -47,7 +48,7 @@ const LoginPage = () => {
       <div className="flex min-h-full relative bg-base-100 rounded-md w-auto flex-col flex-1 justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
-            className="mx-auto h-12 w-auto"
+            className="mx-auto h-12 mb-8 w-auto"
             src="./logo.png"
             alt="Your Company"
           />
