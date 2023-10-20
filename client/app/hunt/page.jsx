@@ -19,8 +19,8 @@ export default function Home() {
   }
 
   let choose = randomNoRepeats(quotes)
-
-  const [quote, setQuote] = useState(choose())
+  const a = choose()
+  const [quote, setQuote] = useState(quotes[0])
   useEffect(() => {
     if (!localStorage.getItem('token')) {
       window.location.href = "/"
