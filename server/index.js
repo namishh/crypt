@@ -7,10 +7,6 @@ const User = require("./models/UserModel")
 const Question = require("./models/QuestionModel")
 require('dotenv').config()
 
-const getTotalQuestions = async () => {
-  let number = await Question.countDocuments({});
-  return number;
-};
 const SECRET = process.env.SECRET
 const app = express()
 const corsOpts = {
@@ -19,6 +15,7 @@ const corsOpts = {
   methods: ['GET', 'POST', 'HEAD', 'PUT', 'PATCH', 'DELETE'],
   exposedHeaders: ['Content-Type', 'x-access-token']
 };
+
 app.use(cors(corsOpts));
 app.use(express.json())
 app.use(function(req, res, next) {
@@ -27,8 +24,20 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+
 const PORT = 8080
+
 mongoose.connect(process.env.MONGO_URI);
+
+const getTotalQuestions = async () => {
+  let number = await Question.countDocuments({});
+  return number;
+};
+
+const fetchLeaderboard = async (req, res, next) => {
+	const users = await User.find().sort("-level lastUpdate");
+	return users;
+};
 
 app.get('/', (req, res) => {
   res.json({ message: "owo what are you doing here?" })
@@ -107,6 +116,20 @@ app.get("/api/getData", async (req, res) => {
   }
 })
 
+
+app.get("/api/getlb", async (req, res) => {
+  const token = req.headers['x-access-token']
+
+  try {
+    const decoded = jwt.verify(token, SECRET)
+    const users =  await fetchLeaderboard()
+
+    return res.json({ status: 'ok', data: users })
+  } catch (error) {
+    res.json({ status: 'error', error: 'invalid token' })
+  }
+})
+
 app.post("/api/checkAnswer", async (req, res) => {
   const token = req.headers['x-access-token']
   const answer = req.body.answer
@@ -116,9 +139,18 @@ app.post("/api/checkAnswer", async (req, res) => {
     const user = await User.findOne({ email: email })
     const question = await Question.findOne({ question: `${user.level}` });
     if (question.answer === answer) {
-      return res.json({ status: 'ok', correct: true })
+      const total = await getTotalQuestions()
+      if (total > Number(user.level)) {
+        await User.findByIdAndUpdate(user._id, {
+			    level: Number(user.level) + 1,
+			    lastSolved: Date.now(),
+		    });
+        return res.json({ status: 'ok', correct: true, level: Number(user.level) + 1, total })
+      } else {
+        return res.json({ status: 'ok', correct: true, level: Number(user.level), total })
+      }
     } else {
-      return res.json({ status: 'ok', correct: false })
+      return res.json({ status: 'ok', correct: false, level: Number(user.level) })
     }
   } catch (error) {
     res.json({ status: 'error', error: 'invalid token' })
