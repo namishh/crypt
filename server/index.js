@@ -147,6 +147,11 @@ app.post("/api/checkAnswer", async (req, res) => {
 		    });
         return res.json({ status: 'ok', correct: true, level: Number(user.level) + 1, total })
       } else {
+        if (!user.username.includes("👑")) {
+          await User.findByIdAndUpdate(user._id, {
+          username: user.username + " 👑 "
+		    });
+        }
         return res.json({ status: 'ok', correct: true, level: Number(user.level), total })
       }
     } else {

@@ -47,6 +47,7 @@ export default function QuestionBoard() {
         setUpdate(!updateQuestion)
         toast("correct answer")
       } else {
+        setData({ ...data, level: Number(dataa.level) })
         toast("you have completed the game!")
       }
     } else {
