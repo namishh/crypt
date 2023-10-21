@@ -14,3 +14,7 @@
 .dosis {
   font-family: Dosis;
 }
+
+.parent {
+  transform-style: preserve-3d;
+}
