@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import PacmanLoader from "react-spinners/PacmanLoader"
 import { useGameContext } from "../context/game"
+import { ArrowCounterClockwise } from "phosphor-react"
 
 export default function LeaderBoard() {
   const { data, url, setData } = useGameContext()
@@ -29,7 +30,10 @@ export default function LeaderBoard() {
   useEffect(() => {
     getLeaderboard()
   }, [data])
-  return <div className="flex flex-col items-center w-full h-full ">
+  return <div className="flex relative flex-col items-center w-full h-full ">
+    <div className="absolute top-[-10px] -right-[8px] cursor-pointer">
+      <ArrowCounterClockwise onClick={getLeaderboard} size={24} fill="bold" />
+    </div>
     {loading ? <div className="justify-self-center h-full flex justify-center items-center">
       <PacmanLoader color="#7095db" size={20} />
     </div> :
