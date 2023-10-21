@@ -64,7 +64,7 @@ export default function QuestionBoard() {
   return (
     <div className="flex w-full h-full justify-center items-center">
 
-      {loading ? <PacmanLoader color="#7095db" size={35} /> : <form onSubmit={checkAnswer} className="w-full flex flex-col justify-between h-full">
+      {loading ? <PacmanLoader color="#7095db" size={20} /> : <form onSubmit={checkAnswer} className="w-full flex flex-col justify-between h-full">
         <div className="grow flex justify-center items-center text-2xl"><p>{question}</p></div>
         <div className="w-full">
           <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} required

@@ -35,19 +35,19 @@ export default function Home() {
       </div>
       <Navbar />
       <div className="flex-col-reverse md:flex-row flex gap-8">
-        <div className="h-[31.4rem] z-[100] w-[25rem] bg-gradient-to-r from-rose-400 to-fuchsia-500 p-[2px] relative rounded-lg">
+        <div className="h-[32rem] z-[100] w-[25rem] bg-gradient-to-r from-rose-400 to-fuchsia-500 p-[2px] relative rounded-lg">
           <div className="bg-neutral z-[110] w-full h-full shadow-2xl rounded-lg p-8 md:p-8 ronded-xl">
             <LeaderBoard />
           </div>
         </div>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 h-[32rem]">
           <div className="h-[24rem] md:w-[30rem] lg:w-[38rem] z-[100] bg-gradient-to-r from-fuchsia-500 to-indigo-500 shadow-2xl p-[2px] relative rounded-lg">
             <div className="bg-neutral z-[110] w-full h-full shadow-2xl rounded-lg p-4 sm:p-8 ronded-xl">
               <QuestionBoard />
             </div>
           </div>
-          <div className="z-[100] bg-gradient-to-r from-fuchsia-500 to-indigo-500 shadow-2xl p-[2px] relative rounded-lg">
-            <div onClick={() => setQuote(choose())} className="cursor-pointer bg-neutral h-[5rem] lg:w-[38rem] md:w-[30rem] z-[110] w-full h-full shadow-2xl rounded-lg p-4 sm:p-4 ronded-xl flex justify-center items-center text-center">
+          <div className="z-[100] bg-gradient-to-r from-fuchsia-500 grow to-indigo-500 shadow-2xl p-[2px] relative rounded-lg">
+            <div onClick={() => setQuote(choose())} className="cursor-pointer bg-neutral grow lg:w-[38rem] md:w-[30rem] z-[110] w-full h-full shadow-2xl rounded-lg p-4 sm:p-4 ronded-xl flex justify-center items-center text-center">
               <p>{quote}</p>
             </div>
           </div>

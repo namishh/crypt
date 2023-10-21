@@ -31,7 +31,7 @@ export default function LeaderBoard() {
   }, [data])
   return <div className="flex flex-col items-center w-full h-full ">
     {loading ? <div className="justify-self-center h-full flex justify-center items-center">
-      <PacmanLoader color="#7095db" size={35} />
+      <PacmanLoader color="#7095db" size={20} />
     </div> :
       <table className="table table-zebra">
         <thead>
