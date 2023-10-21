@@ -1,5 +1,5 @@
 'use client'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import Navbar from "./comps/Nav"
 import { motion as m } from 'framer-motion';
 import Link from "next/link";
