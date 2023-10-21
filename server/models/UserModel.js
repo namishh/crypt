@@ -6,7 +6,8 @@ const User = new mongoose.Schema(
 		email: { type: String, required: true, unique: true },
 		password: { type: String, required: true },
 		level: { type: Number, default: 1 },
-    lastUpdate: {type: Number, default: Date.now()}
+    completed: {type: Boolean, default: false},
+    lastUpdate: {type: Number, default: Date.now()},
 	},
 	{ collection: 'userData' }
 )

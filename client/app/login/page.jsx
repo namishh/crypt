@@ -32,6 +32,8 @@ const LoginPage = () => {
     const data = await response.json()
     if (data.user) {
       localStorage.setItem('token', data.user)
+      localStorage.setItem('username', data.details.username)
+      console.log(data)
       window.location.href = '/hunt'
     } else {
       toast("No such user exists!")
@@ -39,8 +41,8 @@ const LoginPage = () => {
   }
   return <div className="h-screen flex flex-col items-center justify-center relative">
     <Navbar />
-    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="fixed top-0 z-[150] bg-primary left-0 h-full w-full"></m.div>
-    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ delay: .25, duration: 1, ease: "easeOut" }} className="fixed top-0 z-[150] bg-neutral left-0 h-full w-full"></m.div>
+    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="fixed top-0 z-[111150] bg-primary left-0 h-full w-full"></m.div>
+    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ delay: .25, duration: 1, ease: "easeOut" }} className="fixed top-0 z-[1111150] bg-neutral left-0 h-full w-full"></m.div>
     <div className="absolute flex flex-wrap w-full h-full bg-primary">
       {
         [...Array(48)].map((e, i) => <div className="w-1/12 h-1/4 bg-base-100 border-r-2 border-b-2 border-[#111] hover:bg-[#131c29] delay-100 transition-all" key={i}></div>)

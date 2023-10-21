@@ -36,6 +36,7 @@ export default function Navbar() {
       const user = jwt.decode(token)
       if (!user) {
         localStorage.removeItem('token')
+        localStorage.removeItem('username')
       } else {
         getData()
         setLoggedIn(true)

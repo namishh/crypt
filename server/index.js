@@ -96,7 +96,7 @@ app.post('/api/login', async (req, res) => {
       SECRET
     )
 
-    return res.json({ status: 'ok', user: token })
+    return res.json({ status: 'ok', user: token, details: user })
   } else {
     return res.json({ status: 'error', user: false })
   }
@@ -147,9 +147,9 @@ app.post("/api/checkAnswer", async (req, res) => {
 		    });
         return res.json({ status: 'ok', correct: true, level: Number(user.level) + 1, total })
       } else {
-        if (!user.username.includes("👑")) {
+        if (!user.completed) {
           await User.findByIdAndUpdate(user._id, {
-          username: user.username + " 👑 "
+            completed: true
 		    });
         }
         return res.json({ status: 'ok', correct: true, level: Number(user.level), total })

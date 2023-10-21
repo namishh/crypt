@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel="icon" href="/logo.svg" sizes="any" />
-      <body className={`${dosis.className} dosis bg-darkbg min-h-screen`}>
+      <body className={`${dosis.className} dosis bg-darkbg min-h-screen overflow-x-hidden`}>
         <GameProvider>
           <ToastContainer
             position="bottom-center"

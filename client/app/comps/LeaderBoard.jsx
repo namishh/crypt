@@ -5,7 +5,7 @@ import { useGameContext } from "../context/game"
 export default function LeaderBoard() {
   const { data, url, setData } = useGameContext()
   const [leaderboard, setLeaderboard] = useState([])
-  const [user, setUser] = useState({ username: "none", level: "", index: "" })
+  const [user, setUser] = useState({ username: "none", level: "", index: "", completed: false })
   const [loading, setLoading] = useState(true)
   const getLeaderboard = async () => {
     setLoading(true)
@@ -18,7 +18,7 @@ export default function LeaderBoard() {
     if (dataa.status === 'ok') {
       dataa = dataa.data
       setLeaderboard(dataa)
-      const userone = dataa.filter(x => x.email === data.email)[0]
+      const userone = dataa.filter(x => x.username === localStorage.getItem("username"))[0]
       const index = dataa.indexOf(userone)
       setUser({ ...userone, index })
       setLoading(false)
@@ -45,13 +45,13 @@ export default function LeaderBoard() {
           {leaderboard.map((i, j) => {
             return j <= 8 && <tr key={j} >
               <th>{j + 1}</th>
-              <td>{i.username.toUpperCase() || "huh"}</td>
+              <td>{i.completed ? "👑 " : ""} {i.username.toUpperCase() || "huh"}</td>
               <td>{i.level * 1000}</td>
             </tr>
           })}
           <tr >
             <th>{String(user.index + 1)}</th>
-            <td>{user.username === undefined ? "LOADING PERSONAL STATS" : user.username.toUpperCase()}</td>
+            <td>{user.completed ? "👑 " : ""} {user.username === undefined ? "LOADING PERSONAL STATS" : user.username.toUpperCase()}</td>
             <td>{String(user.level * 1000)}</td>
           </tr>
 

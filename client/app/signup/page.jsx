@@ -45,8 +45,8 @@ const SignPage = () => {
         [...Array(48)].map((e, i) => <div className="w-1/12 h-1/4 bg-base-100 border-r-2 border-b-2 border-[#111] hover:bg-[#131c29] delay-100 transition-all" key={i}></div>)
       }
     </div>
-    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="fixed top-0 z-[150] bg-primary left-0 h-full w-full"></m.div>
-    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ delay: .25, duration: 1, ease: "easeOut" }} className="fixed top-0 z-[150] bg-neutral left-0 h-full w-full"></m.div>
+    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ duration: 1, ease: "easeOut" }} className="fixed top-0 z-[1111150] bg-primary left-0 h-full w-full"></m.div>
+    <m.div initial={{ x: "100%" }} animate={{ x: "-100%" }} exit={{ opacity: 1 }} transition={{ delay: .25, duration: 1, ease: "easeOut" }} className="fixed top-0 z-[1111150] bg-neutral left-0 h-full w-full"></m.div>
     <m.div initial={{ x: "100%" }} animate={{ x: "0%" }} exit={{ opacity: 1 }} transition={{ delay: .3, duration: 1, ease: "easeOut" }} className="absolute h-screen w-screen flex justify-center items-center">
       <div className="relative flex items-center w-full justify-center">
         <div className="flex min-h-full relative z-[100] bg-base-100 rounded-md w-5/6 sm:w-3/4 md:w-[30rem] parent flex-col justify-center px-6 py-12 lg:px-8">
