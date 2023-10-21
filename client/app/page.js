@@ -20,7 +20,10 @@ const item = {
   show: { y: '0%', opacity: 1 }
 }
 export default function Home() {
-  const user = localStorage.getItem("token")
+  const [user, setUser] = useState("")
+  useEffect(() => {
+    setUser(localStorage.getItem("token"))
+  }, [])
   return (
     <div>
       <m.div initial={{ y: "0%", }} animate={{ y: "-100%" }} exit={{ opacity: 1 }} transition={{ delay: 2, duration: 1.5, ease: "easeOut" }} className="fixed bg-primary h-screen top-[0] left-[-50%] z-[10000000000] rounded-t-0">
